@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="sv"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layout/sidenav">
+
+<head>
+    <th:block layout:fragment="extraHead">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    </th:block>
+</head>
+
+<body>
+<div layout:fragment="mainContent">
+    <div class="container mt-5">
+        <h1>Generate Hash</h1>
+
+        <form th:action="@{/generateHash}" method="post" class="mt-4">
+            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+            <div class="mb-3">
+                <label for="input" class="form-label">Input:</label>
+                <input type="text" class="form-control" id="input" name="input" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Generate Hashes</button>
+        </form>
+
+        <div th:if="${md5Hash != null}">
+            <h2 class="mt-4">Generated Hashes:</h2>
+            <p><strong>Input:</strong> <span th:text="${input}"></span></p>
+            <p><strong>MD5 Hash:</strong> <span th:text="${md5Hash}"></span></p>
+            <p><strong>SHA-256 Hash:</strong> <span th:text="${sha256Hash}"></span></p>
+        </div>
+
+        <div th:if="${error != null}" class="alert alert-danger mt-4">
+            <p th:text="${error}"></p>
+        </div>
+
+
+    </div>
+</div>
+</body>
+</html>

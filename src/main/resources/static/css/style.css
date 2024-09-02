@@ -1,0 +1,77 @@
+body {
+    display: flex;
+    min-height: 100vh;
+    background-color: #f8f9fa;
+    margin: 0;
+}
+nav {
+    width: 250px;
+    background-color: #343a40;
+    color: white;
+    flex-shrink: 0;
+}
+.nav-item {
+    list-style: none;
+    padding: 0;
+}
+.nav-item li {
+    padding: 10px 20px;
+}
+.nav-item li a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    transition: background-color 0.3s ease;
+}
+.nav-item li a:hover, .nav-item li #active {
+    background-color: #495057;
+    border-radius: 4px;
+}
+.content {
+    flex-grow: 1;
+    padding: 20px;
+}
+
+main {
+    display: flex;
+    justify-content: center; /* Horisontell centrering */
+    align-items: center; /* Vertikal centrering */
+    flex-grow: 1;
+    padding: 20px;
+    text-align: center;
+    flex-direction: column; /* Se till att innehållet staplas vertikalt */
+}
+
+.user-info {
+    padding: 20px;
+    text-align: center;
+}
+.user-info p {
+    margin: 0;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.redbutton {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor:pointer;
+    transition: background-color 0.3s ease;
+}
+
+.redbutton:hover {
+    background-color: #a71d2a;
+    color: white;
+}
+
+.container {
+    max-width: 600px;
+    margin: auto;
+    text-align: center;
+}
+h1 {
+    margin: 0;
+}

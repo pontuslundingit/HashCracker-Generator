@@ -1,0 +1,74 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title th:text="${pageTitle}">HashCracker</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+          integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="/js/main.js"></script>
+
+
+    <th:block layout:fragment="extraHead" />
+
+</head>
+
+<body>
+
+
+<!------------------sidenav-------------->
+<nav>
+    <div class="content">
+        <div class="info-admin">
+            <div class="user-card">
+                <div class="user-info">
+                    <p th:if="${username}" th:text="'Hey, ' + ${username} + '!'"></p>
+                    <br>
+                    <form th:action="@{/logout}" method="post" sec:authorize="isAuthenticated()">
+                        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+                        <button type="submit" class="redbutton">
+                            <i class="fas fa-sign-out-alt"></i> Log out
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <ul class="nav-item">
+            <li>
+                <a th:href="@{/home}" th:attrappend="id=${activeFunction=='home'? 'active' : null}">
+                    <span class="sidebar-text">Homepage</span>
+                </a>
+            </li>
+            <li>
+                <a th:href="@{/generator}" th:attrappend="id=${activeFunction=='generator'? 'active' : null}">
+                    <span class="sidebar-text">Generate Hash</span>
+                </a>
+            </li>
+            <li>
+                <a th:href="@{/cracker}" th:attrappend="id=${activeFunction=='cracker'? 'active' : null}">
+                    <span class="sidebar-text">Crack a Hash</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<!------------------main-------------->
+<main>
+    <div class="content">
+        <th:block layout:fragment="mainContent" />
+    </div>
+</main>
+
+
+</body>
+</html>
