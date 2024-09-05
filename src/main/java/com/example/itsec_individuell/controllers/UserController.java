@@ -7,6 +7,7 @@ import com.example.itsec_individuell.services.UserService;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -47,21 +48,50 @@ public class UserController {
         }
     }
 
+
     @GetMapping("/home")
     public String home(Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (authentication != null && authentication.getPrincipal() instanceof UserDetails) {
-            UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-            String username = userDetails.getUsername();
-            model.addAttribute("username", username);
 
-            userRepository.findByUsername(username).ifPresent(user -> {
-                model.addAttribute("user", user);
-            });
+        if (authentication != null) {
+            Object principal = authentication.getPrincipal();
+
+            if (principal instanceof UserDetails) {
+                UserDetails userDetails = (UserDetails) principal;
+                String username = userDetails.getUsername();
+                model.addAttribute("username", username);
+
+                userRepository.findByUsername(username).ifPresent(user -> {
+                    model.addAttribute("user", user);
+                });
+            } else if (principal instanceof OAuth2User) {
+                OAuth2User oauthUser = (OAuth2User) principal;
+                String username = oauthUser.getAttribute("login");
+                model.addAttribute("username", username);
+            }
         }
+
         model.addAttribute("activeFunction", "home");
         return "home";
     }
+
+
+//    @GetMapping("/home")
+//    public String home(Model model) {
+//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+//
+//        if (authentication != null && authentication.getPrincipal() instanceof UserDetails) {
+//            UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+//            String username = userDetails.getUsername();
+//            model.addAttribute("username", username);
+//
+//            userRepository.findByUsername(username).ifPresent(user -> {
+//                model.addAttribute("user", user);
+//            });
+//        }
+//        model.addAttribute("activeFunction", "home");
+//        return "home";
+//    }
 
 
 }
