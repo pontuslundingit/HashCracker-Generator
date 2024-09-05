@@ -75,23 +75,4 @@ public class UserController {
         return "home";
     }
 
-
-//    @GetMapping("/home")
-//    public String home(Model model) {
-//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-//
-//        if (authentication != null && authentication.getPrincipal() instanceof UserDetails) {
-//            UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-//            String username = userDetails.getUsername();
-//            model.addAttribute("username", username);
-//
-//            userRepository.findByUsername(username).ifPresent(user -> {
-//                model.addAttribute("user", user);
-//            });
-//        }
-//        model.addAttribute("activeFunction", "home");
-//        return "home";
-//    }
-
-
 }
