@@ -36,8 +36,8 @@ public class HashRunner {
                 while ((password = reader.readLine()) != null) {
                     try {
                         String md5Hash =  hashGenerator.createMD5Hash(password);
-                        //String sha256Hash = hashGenerator.createSHA256Hash(password);
-                        writer.write(String.format("%s:%s%n", password, md5Hash));
+                        String sha256Hash = hashGenerator.createSHA256Hash(password);
+                        writer.write(String.format("%s: MD5=%s, SHA-256=%s%n", password, md5Hash, sha256Hash));
                     } catch (NoSuchAlgorithmException e) {
                         e.printStackTrace();
                     }

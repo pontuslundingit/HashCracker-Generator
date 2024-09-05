@@ -57,9 +57,28 @@ public class HashController {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] parts = line.split(":");
-                if (parts.length == 2 && parts[1].trim().equalsIgnoreCase(hash.trim())) {
-                    message = "Cracked! Password: " + parts[0].trim();
-                    break;
+                if (parts.length == 2) {
+                    String password = parts[0].trim();
+                    String hashes = parts[1].trim();
+
+                    String[] hashParts = hashes.split(", ");
+                    String md5Hash = null;
+                    String sha256Hash = null;
+
+                    for (String hashPart : hashParts) {
+                        if (hashPart.startsWith("MD5=")) {
+                            md5Hash = hashPart.substring(4).trim();
+                        } else if (hashPart.startsWith("SHA-256=")) {
+                            sha256Hash = hashPart.substring(8).trim();
+                        }
+                    }
+                    if (hash.equalsIgnoreCase(md5Hash)) {
+                        message = "Cracked! Password: " + password + " (MD5)";
+                        break;
+                    } else if (hash.equalsIgnoreCase(sha256Hash)) {
+                        message = "Cracked! Password: " + password + " (SHA-256)";
+                        break;
+                    }
                 }
             }
         } catch (IOException e) {
@@ -68,4 +87,27 @@ public class HashController {
         model.addAttribute("message", message);
         return "cracker";
     }
+
+//    @PostMapping("cracker")
+//    public String crackHash(@RequestParam String hash, Model model) {
+//        String inputFilePath = "stats/hashes.txt";
+//        String message = "No match! :(";
+//
+//        try (BufferedReader reader = new BufferedReader(new FileReader(inputFilePath))) {
+//            String line;
+//            while ((line = reader.readLine()) != null) {
+//                String[] parts = line.split(":");
+//                if (parts.length == 2 && parts[1].trim().equalsIgnoreCase(hash.trim())) {
+//                    message = "Cracked! Password: " + parts[0].trim();
+//                    break;
+//                }
+//            }
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        model.addAttribute("message", message);
+//        return "cracker";
+//    }
+
 }
+
