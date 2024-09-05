@@ -3,7 +3,6 @@ package com.example.itsec_individuell.services;
 
 import com.example.itsec_individuell.models.User;
 import com.example.itsec_individuell.models.UserRepository;
-import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 

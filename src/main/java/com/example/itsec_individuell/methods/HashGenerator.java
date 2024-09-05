@@ -1,8 +1,6 @@
 package com.example.itsec_individuell.methods;
 
 
-import org.springframework.stereotype.Component;
-
 import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;

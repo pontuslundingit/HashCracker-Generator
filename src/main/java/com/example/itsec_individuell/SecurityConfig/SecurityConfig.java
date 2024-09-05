@@ -53,21 +53,6 @@ public class SecurityConfig {
         return http.build();
     }
 
-//    private GrantedAuthoritiesMapper userAuthoritiesMapper() {
-//        return (authorities) -> {
-//            List<SimpleGrantedAuthority> mappedAuthorities = new ArrayList<>();
-//
-//            authorities.forEach(authority -> {
-//                if (authority instanceof OAuth2UserAuthority oAuth2UserAuthority) {
-//                    Map<String, Object> userAttributes = oAuth2UserAuthority.getAttributes();
-//
-//                    String login = userAttributes.get("login").toString();
-//
-//
-//                }
-//            });
-//        }
-//    }
 
     @Bean
     public PasswordEncoder passwordEncoder() {

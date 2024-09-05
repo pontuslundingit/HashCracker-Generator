@@ -64,22 +64,4 @@ public class UserController {
     }
 
 
-
-//    @GetMapping("/cracker")
-//    public String crack(Model model) {
-//        model.addAttribute("activeFunction", "cracker");
-//        return "cracker";
-//    }
-
-//    private void addUserDetailsToModel(Model model) {
-//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-//        if (authentication != null && authentication.getPrincipal() instanceof UserDetails) {
-//            UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-//            model.addAttribute("username", userDetails.getUsername());
-//            System.out.println("User logged in: " + userDetails.getUsername()); // Debug output
-//        } else {
-//            System.out.println("No user is logged in or user details are not available.");
-//        }
-//    }
-
 }
