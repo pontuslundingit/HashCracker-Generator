@@ -2,10 +2,10 @@ name: Java CI with Gradle
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "master" ]
 
   pull_request:
-    branches: [ "main" ]
+    branches: [ "master" ]
 
 env:
   build-number: ${GITHUB_RUN_NUMBER}
