@@ -50,11 +50,6 @@ jobs:
         with:
           gradle-version: '8.9'
 
-      - name: Test MySQL Connection
-        run: |
-          mysql -h 127.0.0.1 -P 3306 -u pontuslundin -p$MYSQL_PASSWORD -e "SHOW DATABASES;"
-        env:
-          MYSQL_PASSWORD: ${{ secrets.MYSQL_PASSWORD }}
 
       - name: Wait for MySQL to be ready
         run: |
