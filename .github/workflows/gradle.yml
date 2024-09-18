@@ -50,9 +50,13 @@ jobs:
         with:
           gradle-version: '8.9'
 
+      - name: Test MySQL Connection
+        run: |
+          docker exec -it mysql mysql -u pontuslundin -pW8q@29xzh7!pizza -e 'SHOW DATABASES;'
+
       - name: Wait for MySQL to be ready
         run: |
-          until mysqladmin ping -h mysql --silent; do
+          until mysql -h mysql -e 'SELECT 1'; do
           echo "Waiting for database connection..."
           sleep 2
           done
