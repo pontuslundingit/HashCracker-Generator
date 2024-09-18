@@ -52,11 +52,13 @@ jobs:
 
       - name: Test MySQL Connection
         run: |
-          docker exec -it mysql mysql -u pontuslundin -pW8q@29xzh7!pizza -e 'SHOW DATABASES;'
+          mysql -h 127.0.0.1 -P 3306 -u pontuslundin -p$MYSQL_PASSWORD -e "SHOW DATABASES;"
+        env:
+          MYSQL_PASSWORD: ${{ secrets.MYSQL_PASSWORD }}
 
       - name: Wait for MySQL to be ready
         run: |
-          until mysql -h mysql -e 'SELECT 1'; do
+          until mysqladmin ping -h 127.0.0.1 -P 3306 --silent; do
           echo "Waiting for database connection..."
           sleep 2
           done
