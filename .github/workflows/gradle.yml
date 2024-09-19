@@ -32,7 +32,7 @@ jobs:
           --health-interval 10s
           --health-timeout 10s
           --health-retries 10
-          --health-start-period 30s
+          --health-start-period 120s
 
     steps:
       - uses: actions/checkout@v4
@@ -63,7 +63,7 @@ jobs:
       - name: Extra waiting time for MySQL
         run: |
           echo "Giving extra time for MySQL to be fully ready..."
-          sleep 60
+          sleep 120
 
       - name: Build and run test
         run: gradle build
