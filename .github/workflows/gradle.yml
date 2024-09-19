@@ -59,6 +59,11 @@ jobs:
             echo "Waiting for MySQL... ($i/30)"
             sleep 5
           done
+          
+      - name: Extra waiting time for MySQL
+        run: |
+          echo "Giving extra time for MySQL to be fully ready..."
+          sleep 60
 
       - name: Build and run test
         run: gradle build
