@@ -63,11 +63,10 @@ jobs:
       - name: Verify MySQL connection
         run: mysql -h 127.0.0.1 -P 3306 -u ${{ secrets.MYSQL_USERNAME }} -p${{ secrets.MYSQL_PASSWORD }} -e "SHOW DATABASES;"
         env:
-          env:
-            MYSQL_ROOT_PASSWORD: ${{ secrets.MYSQL_ROOT_PASSWORD }}
-            MYSQL_DATABASE: Hashcracker
-            MYSQL_USERNAME: ${{ secrets.MYSQL_USERNAME }}
-            MYSQL_PASSWORD: ${{ secrets.MYSQL_PASSWORD }}
+          MYSQL_ROOT_PASSWORD: ${{ secrets.MYSQL_ROOT_PASSWORD }}
+          MYSQL_DATABASE: Hashcracker
+          MYSQL_USERNAME: ${{ secrets.MYSQL_USERNAME }}
+          MYSQL_PASSWORD: ${{ secrets.MYSQL_PASSWORD }}
 
       - name: Build and run test
         run: ./gradlew build
