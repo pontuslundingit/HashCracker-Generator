@@ -60,13 +60,6 @@ jobs:
           sleep 2
           done 
 
-      - name: Verify MySQL connection
-        run: mysql -h 127.0.0.1 -P 3306 -u $MYSQL_USERNAME --password=$MYSQL_PASSWORD -e "SHOW DATABASES;"
-        env:
-          MYSQL_USERNAME: ${{ secrets.MYSQL_USERNAME }}
-          MYSQL_PASSWORD: ${{ secrets.MYSQL_PASSWORD }}
-
-
       - name: Build and run test
         run: ./gradlew build
         env:
@@ -75,6 +68,7 @@ jobs:
           GITHUB_CLIENT_ID: ${{ secrets.GITHUB_CLIENT_ID }}
           GITHUB_CLIENT_SECRET: ${{ secrets.GITHUB_CLIENT_SECRET }}
           HASHCRACKER_FILE_PATH: ./HashCracker.properties
+
       - name: Package the application
         run:  |
           mv build/libs/ITsec_individuell-0.0.1-SNAPSHOT.jar build/libs/ITsec_individuell-1.${{ env.build-number }}.1.jar
