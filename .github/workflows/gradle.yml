@@ -61,7 +61,7 @@ jobs:
           done
 
       - name: Build and run test
-        run: ./gradlew build
+        run: gradle build
         env:
           MYSQL_PASSWORD: ${{ secrets.MYSQL_PASSWORD }}
           MYSQL_USERNAME: ${{ secrets.MYSQL_USERNAME }}
