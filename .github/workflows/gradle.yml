@@ -60,6 +60,9 @@ jobs:
           sleep 2
           done
 
+      - name: Verify MySQL connection
+        run: mysql -h 127.0.0.1 -P 3306 -u ${{ secrets.MYSQL_USERNAME }} -p${{ secrets.MYSQL_PASSWORD }} -e "SHOW DATABASES;"
+
       - name: Build and run test
         run: ./gradlew build
         env:
