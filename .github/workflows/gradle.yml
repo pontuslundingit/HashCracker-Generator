@@ -50,9 +50,6 @@ jobs:
         with:
           gradle-version: '8.9'
 
-      - name: Write HashCracker.properties file
-        run: echo "${{ secrets.HASHCRACKER_PROPERTIES_CONTENT }}" > HashCracker.properties
-
       - name: Wait for MySQL to be ready
         run: |
           until mysqladmin ping -h 127.0.0.1 -P 3306 --silent; do
@@ -67,7 +64,6 @@ jobs:
           MYSQL_USERNAME: ${{ secrets.MYSQL_USERNAME }}
           GITHUB_CLIENT_ID: ${{ secrets.GITHUB_CLIENT_ID }}
           GITHUB_CLIENT_SECRET: ${{ secrets.GITHUB_CLIENT_SECRET }}
-          HASHCRACKER_FILE_PATH: ./HashCracker.properties
 
       - name: Package the application
         run:  |
