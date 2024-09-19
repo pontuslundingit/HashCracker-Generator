@@ -62,7 +62,7 @@ jobs:
         env:
           MYSQL_PASSWORD: ${{ secrets.MYSQL_PASSWORD }}
           MYSQL_USERNAME: ${{ secrets.MYSQL_USERNAME }}
-          MYSQL_DATABASE: Hashcracker
+          MYSQL_DATABASE: ${{ secrets.MYSQL_DATABASE }}
           GHUB_CLIENT_ID: ${{ secrets.GHUB_CLIENT_ID }}
           GHUB_CLIENT_SECRET: ${{ secrets.GHUB_CLIENT_SECRET }}
 
