@@ -58,12 +58,12 @@ jobs:
           done 
 
       - name: Build and run test
-        run: ./gradlew build
+        run: ./gradlew build --info
         env:
           MYSQL_PASSWORD: ${{ secrets.MYSQL_PASSWORD }}
           MYSQL_USERNAME: ${{ secrets.MYSQL_USERNAME }}
-          GITHUB_CLIENT_ID: ${{ secrets.GHUB_CLIENT_ID }}
-          GITHUB_CLIENT_SECRET: ${{ secrets.GHUB_CLIENT_SECRET }}
+          GHUB_CLIENT_ID: ${{ secrets.GHUB_CLIENT_ID }}
+          GHUB_CLIENT_SECRET: ${{ secrets.GHUB_CLIENT_SECRET }}
 
       - name: Package the application
         run:  |
